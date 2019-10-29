@@ -20,7 +20,7 @@ body {
   box-shadow: 0 0 80px orange;
 }
 
-.animal, .dog, .bird {
+.animal {
   display: grid;
   width: 100px;
   height: 50px;
@@ -30,6 +30,7 @@ body {
 }
 
 .bird {
+  @extend .animal;
   border-radius: 40px;
   background: black;
   justify-content: flex-end;
@@ -68,7 +69,9 @@ body {
     transform: scale(1, 1);
   }
 }
+
 .dog {
+  @extend .animal;
   transition: all 0.5s ease;
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -86,14 +89,16 @@ body {
   background: black;
   border-radius: 50%;
   box-shadow: 0 0 0 6px white;
-}
-.eye:before {
-  content: "";
-  display: block;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
+
+  // light
+  &:before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+  }
 }
 
 .leg {
@@ -107,12 +112,12 @@ body {
   50% {
     transform: scale(1, 1);
   }
+
   55% {
     transform: scale(1, 0);
   }
+
   60% {
     transform: scale(1, 1);
   }
 }
-
-/*# sourceMappingURL=/src.a2b27638.css.map */

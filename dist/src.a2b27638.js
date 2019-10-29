@@ -184,12 +184,12 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/styles.css":[function(require,module,exports) {
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/styles.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/Animal.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/Components/Animal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -210,12 +210,17 @@ function () {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         _ref$name = _ref.name,
         name = _ref$name === void 0 ? 'animal' : _ref$name,
-        age = _ref.age;
+        age = _ref.age,
+        _ref$target = _ref.target,
+        target = _ref$target === void 0 ? document.body : _ref$target,
+        className = _ref.className;
 
     _classCallCheck(this, Animal);
 
     this.name = name;
     this.age = age;
+    this.target = target;
+    this.className = className;
     this.speak();
     this.render();
   }
@@ -224,11 +229,11 @@ function () {
     key: "render",
     value: function render() {
       var box = document.createElement('div');
-      box.classList.add('box');
+      box.classList.add(this.className);
       box.style.left = Math.random() * 90 + 'vw';
       box.style.backgroundColor = "hsl( ".concat(Math.random() * 360, ", 70%,70%)");
       box.textContent = this.name;
-      document.body.appendChild(box);
+      this.target.appendChild(box);
     }
   }, {
     key: "speak",
@@ -241,7 +246,7 @@ function () {
 }();
 
 exports.default = Animal;
-},{}],"src/Dog.js":[function(require,module,exports) {
+},{}],"src/Components/Dog.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -276,10 +281,22 @@ var Dog =
 function (_Animal) {
   _inherits(Dog, _Animal);
 
-  function Dog() {
+  function Dog(_ref) {
+    var _this;
+
+    var _ref$name = _ref.name,
+        name = _ref$name === void 0 ? 'Caya' : _ref$name,
+        target = _ref.target;
+
     _classCallCheck(this, Dog);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Dog).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Dog).call(this, {
+      name: name,
+      target: target,
+      className: 'dog'
+    }));
+    _this.lives = lives;
+    return _this;
   }
 
   _createClass(Dog, [{
@@ -298,7 +315,7 @@ function (_Animal) {
 }(_Animal2.default);
 
 exports.default = Dog;
-},{"./Animal":"src/Animal.js"}],"src/World.js":[function(require,module,exports) {
+},{"./Animal":"src/Components/Animal.js"}],"src/Components/World.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -341,17 +358,17 @@ function () {
 }();
 
 exports.default = World;
-},{"./Dog":"src/Dog.js"}],"src/index.js":[function(require,module,exports) {
+},{"./Dog":"src/Components/Dog.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
-require("./styles.css");
+require("./styles.scss");
 
-var _World = _interopRequireDefault(require("./World"));
+var _World = _interopRequireDefault(require("./Components/World"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 new _World.default();
-},{"./styles.css":"src/styles.css","./World":"src/World.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./styles.scss":"src/styles.scss","./Components/World":"src/Components/World.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
