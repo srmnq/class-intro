@@ -1,0 +1,21 @@
+body {
+  font-family: futura, sans-serif;
+  height: 100vh;
+
+  position: relative;
+}
+
+.box {
+  height: 50px;
+  width: 100px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0px;
+  padding: 5px;
+  left: 190px;
+}
+
+
+/*# sourceMappingURL=/src.a2b27638.css.map */
