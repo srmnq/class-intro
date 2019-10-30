@@ -7,13 +7,12 @@ export default class Entity {
   }
 
   render() {
-    const box = document.createElement('div')
+    const el = document.createElement('div')
 
-    box.classList.add(this.className)
+    el.classList.add(this.className)
 
-    box.style.left = Math.random() * 90 + 'vw'
-    box.style.backgroundColor = `hsl( ${Math.random() * 360}, 70%,70%)`
-    this.target.appendChild(box)
-    this.box = box
+    //el.style.backgroundColor = `hsl( ${Math.random() * 360}, 70%,70%)`
+    this.target.appendChild(el)
+    this.el = el
   }
 }

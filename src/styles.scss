@@ -7,6 +7,7 @@ body {
   border-bottom: 20px solid greenyellow;
   height: 100vh;
   background: skyblue;
+  font-family: futura;
   margin: 0;
 }
 
@@ -72,6 +73,7 @@ body {
 
 .dog {
   @extend .animal;
+  height: 80px;
   transition: all 0.5s ease;
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -80,9 +82,29 @@ body {
   bottom: 30px;
 }
 
+.cat {
+  @extend .animal;
+  height: 40px;
+  transition: all 0.5s ease;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: flex-end;
+  justify-items: center;
+  bottom: 30px;
+  background: rgb(186, 110, 110);
+}
+.speechbubble {
+  @extend .animal;
+  bottom: 200px;
+  background: rgb(232, 232, 232);
+  border-radius: 20px;
+  height: 70px;
+  padding: 10px;
+}
+
 .eye {
   margin-top: -5px;
-  animation: blink 3s 1s linear infinite;
+  animation: blink 3s 9s linear infinite;
   grid-column: span 2;
   width: 20px;
   height: 20px;

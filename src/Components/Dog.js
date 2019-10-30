@@ -1,15 +1,31 @@
 import Animal from './Entity'
 import Eye from './Eye'
+import SpeechBubble from './SpeechBubble'
 
 export default class Dog extends Animal {
-  constructor({ name = 'Caya', target }) {
-    super({ name, target, className: 'dog' })
-    new Eye({ target: this.box })
-    new Eye({ target: this.box })
+  constructor({ props }) {
+    super({ ...props, name: 'Caya', className: 'dog' })
+    this.createEyes()
+    this.handleClick()
+    this.setPosition()
+  }
+
+  createEyes() {
+    new Eye({ target: this.el })
+    new Eye({ target: this.el })
+  }
+  setPosition() {
+    this.el.style.left = Math.random() * 90 + 'vw'
+  }
+
+  handleClick() {
+    this.el.addEventListener('click', () => {
+      new SpeechBubble({ target: this.el })
+    })
   }
 
   speak() {
-    console.log(this.name + ' says: woof')
+    console.log.textContent = this.name + ' says: woof'
   }
 
   tellAge() {
