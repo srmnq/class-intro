@@ -1,4 +1,5 @@
 import Dog from './Dog'
+import Eye from './Eye'
 
 export default class World {
   constructor() {

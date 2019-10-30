@@ -1,9 +1,11 @@
-import Animal from './Animal'
+import Animal from './Entity'
+import Eye from './Eye'
 
 export default class Dog extends Animal {
   constructor({ name = 'Caya', target }) {
     super({ name, target, className: 'dog' })
-    this.lives = lives
+    new Eye({ target: this.box })
+    new Eye({ target: this.box })
   }
 
   speak() {
