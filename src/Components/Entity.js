@@ -1,8 +1,9 @@
 export default class Entity {
-  constructor({ name = 'animal', target = document.body, className } = {}) {
+  constructor({ name, target = document.body, className, left } = {}) {
     this.name = name
     this.target = target
     this.className = className
+    this.left = left
     this.render()
   }
 

@@ -208,17 +208,18 @@ var Entity =
 function () {
   function Entity() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        _ref$name = _ref.name,
-        name = _ref$name === void 0 ? 'animal' : _ref$name,
+        name = _ref.name,
         _ref$target = _ref.target,
         target = _ref$target === void 0 ? document.body : _ref$target,
-        className = _ref.className;
+        className = _ref.className,
+        left = _ref.left;
 
     _classCallCheck(this, Entity);
 
     this.name = name;
     this.target = target;
     this.className = className;
+    this.left = left;
     this.render();
   }
 
@@ -335,6 +336,7 @@ function (_Entity) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SpeechBubble).call(this, _objectSpread({}, props, {
       className: 'speechbubble'
     })));
+    _this.text = props.text;
 
     _this.speak();
 
@@ -344,7 +346,7 @@ function (_Entity) {
   _createClass(SpeechBubble, [{
     key: "speak",
     value: function speak() {
-      this.el.textContent = this.name + ' says: woof';
+      this.el.textContent = this.text;
     }
   }]);
 
@@ -352,7 +354,7 @@ function (_Entity) {
 }(_Entity2.default);
 
 exports.default = SpeechBubble;
-},{"./Entity":"src/Components/Entity.js"}],"src/Components/Dog.js":[function(require,module,exports) {
+},{"./Entity":"src/Components/Entity.js"}],"src/Components/Cat.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -360,7 +362,124 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _Entity = _interopRequireDefault(require("./Entity"));
+var _Entity2 = _interopRequireDefault(require("./Entity"));
+
+var _Eye = _interopRequireDefault(require("./Eye"));
+
+var _SpeechBubble = _interopRequireDefault(require("./SpeechBubble"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Cat =
+/*#__PURE__*/
+function (_Entity) {
+  _inherits(Cat, _Entity);
+
+  function Cat(_ref) {
+    var _this;
+
+    var _ref$name = _ref.name,
+        name = _ref$name === void 0 ? 'Hank' : _ref$name,
+        age = _ref.age,
+        _ref$lives = _ref.lives,
+        lives = _ref$lives === void 0 ? 9 : _ref$lives;
+
+    _classCallCheck(this, Cat);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Cat).call(this, {
+      name: name,
+      age: age,
+      className: 'cat'
+    }));
+
+    _this.createEyes();
+
+    _this.setPosition();
+
+    _this.lives = lives;
+
+    _this.handleClick();
+
+    return _this;
+  }
+
+  _createClass(Cat, [{
+    key: "setPosition",
+    value: function setPosition() {
+      this.el.style.left = Math.random() * 90 + 'vw';
+    }
+  }, {
+    key: "createEyes",
+    value: function createEyes() {
+      new _Eye.default({
+        target: this.el
+      });
+      new _Eye.default({
+        target: this.el
+      });
+    }
+  }, {
+    key: "speak",
+    value: function speak() {
+      console.log(this.name + ' says: Meow');
+
+      _get(_getPrototypeOf(Cat.prototype), "speak", this).call(this);
+    }
+  }, {
+    key: "kill",
+    value: function kill() {
+      console.log(this.name + ' kills.');
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick() {
+      var _this2 = this;
+
+      this.el.addEventListener('click', function () {
+        new _SpeechBubble.default({
+          target: _this2.el,
+          name: 'Cat',
+          text: 'Meow'
+        });
+      });
+    }
+  }]);
+
+  return Cat;
+}(_Entity2.default);
+
+exports.default = Cat;
+},{"./Entity":"src/Components/Entity.js","./Eye":"src/Components/Eye.js","./SpeechBubble":"src/Components/SpeechBubble.js"}],"src/Components/Dog.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Entity2 = _interopRequireDefault(require("./Entity"));
 
 var _Eye = _interopRequireDefault(require("./Eye"));
 
@@ -394,13 +513,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var Dog =
 /*#__PURE__*/
-function (_Animal) {
-  _inherits(Dog, _Animal);
+function (_Entity) {
+  _inherits(Dog, _Entity);
 
-  function Dog(_ref) {
+  function Dog(props) {
     var _this;
-
-    var props = _ref.props;
 
     _classCallCheck(this, Dog);
 
@@ -411,7 +528,7 @@ function (_Animal) {
 
     _this.createEyes();
 
-    _this.handleClick();
+    _this.addClickLogic();
 
     _this.setPosition();
 
@@ -434,21 +551,20 @@ function (_Animal) {
       this.el.style.left = Math.random() * 90 + 'vw';
     }
   }, {
-    key: "handleClick",
-    value: function handleClick() {
+    key: "addClickLogic",
+    value: function addClickLogic() {
       var _this2 = this;
 
       this.el.addEventListener('click', function () {
         new _SpeechBubble.default({
-          target: _this2.el
+          target: _this2.el,
+          text: _this2.name + ' says: woof'
         });
       });
-    }
-  }, {
-    key: "speak",
-    value: function speak() {
-      console.log.textContent = this.name + ' says: woof';
-    }
+    } //speak() {
+    // this.el.textContent = this.name + ' says: woof'
+    //}
+
   }, {
     key: "tellAge",
     value: function tellAge() {
@@ -457,114 +573,20 @@ function (_Animal) {
   }]);
 
   return Dog;
-}(_Entity.default);
+}(_Entity2.default);
 
 exports.default = Dog;
-},{"./Entity":"src/Components/Entity.js","./Eye":"src/Components/Eye.js","./SpeechBubble":"src/Components/SpeechBubble.js"}],"src/Components/Cat.js":[function(require,module,exports) {
+},{"./Entity":"src/Components/Entity.js","./Eye":"src/Components/Eye.js","./SpeechBubble":"src/Components/SpeechBubble.js"}],"src/Components/World.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
-var _Entity = _interopRequireDefault(require("./Entity"));
-
-var _Eye = _interopRequireDefault(require("./Eye"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Cat =
-/*#__PURE__*/
-function (_Animal) {
-  _inherits(Cat, _Animal);
-
-  function Cat(_ref) {
-    var _this;
-
-    var _ref$name = _ref.name,
-        name = _ref$name === void 0 ? 'Hank' : _ref$name,
-        age = _ref.age,
-        _ref$lives = _ref.lives,
-        lives = _ref$lives === void 0 ? 9 : _ref$lives;
-
-    _classCallCheck(this, Cat);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Cat).call(this, {
-      name: name,
-      age: age,
-      className: 'cat'
-    }));
-
-    _this.createEyes();
-
-    _this.lives = lives;
-    return _this;
-  }
-
-  _createClass(Cat, [{
-    key: "createEyes",
-    value: function createEyes() {
-      new _Eye.default({
-        target: this.el
-      });
-      new _Eye.default({
-        target: this.el
-      });
-    }
-  }, {
-    key: "speak",
-    value: function speak() {
-      console.log(this.name + ' says: Meow');
-
-      _get(_getPrototypeOf(Cat.prototype), "speak", this).call(this);
-    }
-  }, {
-    key: "kill",
-    value: function kill() {
-      console.log(this.name + ' kills.');
-    }
-  }]);
-
-  return Cat;
-}(_Entity.default);
-
-exports.default = Cat;
-},{"./Entity":"src/Components/Entity.js","./Eye":"src/Components/Eye.js"}],"src/Components/World.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _Dog = _interopRequireDefault(require("./Dog"));
 
 var _Cat = _interopRequireDefault(require("./Cat"));
 
-var _Eye = _interopRequireDefault(require("./Eye"));
+var _Dog = _interopRequireDefault(require("./Dog"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -602,7 +624,7 @@ function () {
       new _Cat.default({});
       setTimeout(function () {
         return _this2.makeNewCat();
-      }, 100000);
+      }, 10000);
     }
   }]);
 
@@ -610,7 +632,7 @@ function () {
 }();
 
 exports.default = World;
-},{"./Dog":"src/Components/Dog.js","./Cat":"src/Components/Cat.js","./Eye":"src/Components/Eye.js"}],"src/index.js":[function(require,module,exports) {
+},{"./Cat":"src/Components/Cat.js","./Dog":"src/Components/Dog.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 require("./styles.scss");
@@ -648,7 +670,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49602" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50894" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

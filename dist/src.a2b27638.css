@@ -90,12 +90,32 @@ body {
   background: #ba6e6e;
 }
 
+@keyframes fadeitout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 .speechbubble {
   bottom: 200px;
   background: #e8e8e8;
   border-radius: 20px;
   height: 70px;
   padding: 10px;
+  animation: fadeitout 3s forwards;
+}
+
+.speechbubble::after {
+  content: "";
+  position: absolute;
+  right: 40px;
+  top: 100%;
+  border: 20px solid #e8e8e8;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
 }
 
 .eye {

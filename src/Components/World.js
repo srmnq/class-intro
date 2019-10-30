@@ -1,6 +1,5 @@
-import Dog from './Dog'
 import Cat from './Cat'
-import Eye from './Eye'
+import Dog from './Dog'
 
 export default class World {
   constructor() {
@@ -14,6 +13,6 @@ export default class World {
   }
   makeNewCat() {
     new Cat({})
-    setTimeout(() => this.makeNewCat(), 100000)
+    setTimeout(() => this.makeNewCat(), 10000)
   }
 }

@@ -93,6 +93,16 @@ body {
   bottom: 30px;
   background: rgb(186, 110, 110);
 }
+
+@keyframes fadeitout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .speechbubble {
   @extend .animal;
   bottom: 200px;
@@ -100,6 +110,17 @@ body {
   border-radius: 20px;
   height: 70px;
   padding: 10px;
+  animation: fadeitout 3s forwards;
+}
+.speechbubble::after {
+  content: '';
+  position: absolute;
+  right: 40px;
+  top: 100%;
+  border: 20px solid rgb(232, 232, 232);
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
 }
 
 .eye {
