@@ -287,6 +287,78 @@ function (_Entity) {
 }(_Entity2.default);
 
 exports.default = Eye;
+},{"./Entity":"src/Components/Entity.js"}],"src/Components/Leg.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Entity2 = _interopRequireDefault(require("./Entity"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Leg =
+/*#__PURE__*/
+function (_Entity) {
+  _inherits(Leg, _Entity);
+
+  function Leg(_ref) {
+    var _this;
+
+    var target = _ref.target,
+        translateCoordinate = _ref.translateCoordinate,
+        color = _ref.color;
+
+    _classCallCheck(this, Leg);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Leg).call(this, {
+      target: target,
+      className: 'leg',
+      translateCoordinate: translateCoordinate
+    })); //this.setPosition()
+    //this.translateCoordinate = translateCoordinate
+
+    _this.setColor();
+
+    _this.color = color;
+    return _this;
+  } //   setPosition() {
+  //     this.el.style.transform =
+  //       'translate(' + this.translateCoordinate + 'px,100%)'
+  //   }
+
+
+  _createClass(Leg, [{
+    key: "setColor",
+    value: function setColor() {
+      this.el.style.backgroundColor = this.color;
+    }
+  }]);
+
+  return Leg;
+}(_Entity2.default);
+
+exports.default = Leg;
 },{"./Entity":"src/Components/Entity.js"}],"src/Components/SpeechBubble.js":[function(require,module,exports) {
 "use strict";
 
@@ -366,6 +438,8 @@ var _Entity2 = _interopRequireDefault(require("./Entity"));
 
 var _Eye = _interopRequireDefault(require("./Eye"));
 
+var _Leg = _interopRequireDefault(require("./Leg"));
+
 var _SpeechBubble = _interopRequireDefault(require("./SpeechBubble"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -404,7 +478,8 @@ function (_Entity) {
         name = _ref$name === void 0 ? 'Hank' : _ref$name,
         age = _ref.age,
         _ref$lives = _ref.lives,
-        lives = _ref$lives === void 0 ? 9 : _ref$lives;
+        lives = _ref$lives === void 0 ? 9 : _ref$lives,
+        color = _ref.color;
 
     _classCallCheck(this, Cat);
 
@@ -413,6 +488,8 @@ function (_Entity) {
       age: age,
       className: 'cat'
     }));
+
+    _this.createLegs();
 
     _this.createEyes();
 
@@ -426,6 +503,18 @@ function (_Entity) {
   }
 
   _createClass(Cat, [{
+    key: "createLegs",
+    value: function createLegs() {
+      new _Leg.default({
+        target: this.el,
+        color: 'blue'
+      });
+      new _Leg.default({
+        target: this.el,
+        color: 'red'
+      });
+    }
+  }, {
     key: "setPosition",
     value: function setPosition() {
       this.el.style.left = Math.random() * 90 + 'vw';
@@ -471,7 +560,7 @@ function (_Entity) {
 }(_Entity2.default);
 
 exports.default = Cat;
-},{"./Entity":"src/Components/Entity.js","./Eye":"src/Components/Eye.js","./SpeechBubble":"src/Components/SpeechBubble.js"}],"src/Components/Dog.js":[function(require,module,exports) {
+},{"./Entity":"src/Components/Entity.js","./Eye":"src/Components/Eye.js","./Leg":"src/Components/Leg.js","./SpeechBubble":"src/Components/SpeechBubble.js"}],"src/Components/Dog.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -511,6 +600,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+//import Leg from './Leg'
 var Dog =
 /*#__PURE__*/
 function (_Entity) {
@@ -522,7 +612,7 @@ function (_Entity) {
     _classCallCheck(this, Dog);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Dog).call(this, _objectSpread({}, props, {
-      name: 'Caya',
+      name: 'Malik',
       className: 'dog'
     })));
 
@@ -530,10 +620,15 @@ function (_Entity) {
 
     _this.addClickLogic();
 
-    _this.setPosition();
+    _this.setPosition(); //this.createLegs()
+
 
     return _this;
-  }
+  } // createLegs() {
+  //   new Leg({ target: this.el })
+  //   new Leg({ target: this.el })
+  // }
+
 
   _createClass(Dog, [{
     key: "createEyes",
@@ -614,7 +709,7 @@ function () {
       new _Dog.default({});
       setTimeout(function () {
         return _this.makeNewDog();
-      }, 10000);
+      }, 1000);
     }
   }, {
     key: "makeNewCat",
@@ -624,7 +719,7 @@ function () {
       new _Cat.default({});
       setTimeout(function () {
         return _this2.makeNewCat();
-      }, 10000);
+      }, 1000);
     }
   }]);
 
@@ -670,7 +765,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50894" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50425" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,14 +1,21 @@
 import Entity from './Entity'
 import Eye from './Eye'
+import Leg from './Leg'
 import SpeechBubble from './SpeechBubble'
 
 export default class Cat extends Entity {
-  constructor({ name = 'Hank', age, lives = 9 }) {
+  constructor({ name = 'Hank', age, lives = 9, color }) {
     super({ name, age, className: 'cat' })
+    this.createLegs()
     this.createEyes()
     this.setPosition()
     this.lives = lives
     this.handleClick()
+  }
+
+  createLegs() {
+    new Leg({ target: this.el, color: 'blue' })
+    new Leg({ target: this.el, color: 'red' })
   }
 
   setPosition() {

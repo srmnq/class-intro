@@ -1,18 +1,25 @@
 import Entity from './Entity'
 import Eye from './Eye'
 import SpeechBubble from './SpeechBubble'
+//import Leg from './Leg'
 
 export default class Dog extends Entity {
   constructor(props) {
     super({
       ...props,
-      name: 'Caya',
+      name: 'Malik',
       className: 'dog',
     })
     this.createEyes()
     this.addClickLogic()
     this.setPosition()
+    //this.createLegs()
   }
+
+  // createLegs() {
+  //   new Leg({ target: this.el })
+  //   new Leg({ target: this.el })
+  // }
 
   createEyes() {
     new Eye({ target: this.el })

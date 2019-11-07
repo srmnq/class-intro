@@ -146,9 +146,10 @@ body {
 
 .leg {
   background: black;
+  position: absolute;
   width: 10px;
   height: 20px;
-  transform: translate(0, 100%);
+  transform: translate(0px, 100%);
 }
 
 @keyframes blink {

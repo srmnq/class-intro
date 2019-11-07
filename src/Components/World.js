@@ -9,10 +9,10 @@ export default class World {
 
   makeNewDog() {
     new Dog({})
-    setTimeout(() => this.makeNewDog(), 10000)
+    setTimeout(() => this.makeNewDog(), 1000)
   }
   makeNewCat() {
     new Cat({})
-    setTimeout(() => this.makeNewCat(), 10000)
+    setTimeout(() => this.makeNewCat(), 1000)
   }
 }
